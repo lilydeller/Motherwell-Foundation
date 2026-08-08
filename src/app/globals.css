@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand palette: ivory + butter yellow + light blue ---- */
+  --color-ivory: #fcf8ea;
+  --color-ivory-deep: #f7f0dc;
+  --color-cream: #fffdf6;
+  --color-panel: #fffefa; /* cards sit slightly above the page */
+
+  --color-butter: #f6df94; /* buttons, accents */
+  --color-butter-soft: #fff4bb; /* the pale swatch */
+  --color-butter-deep: #ecd07a; /* hover / borders */
+
+  --color-sky: #b0cff1; /* header + footer bar */
+  --color-sky-soft: #d6e6f8;
+  --color-sky-pale: #eaf2fc;
+
+  --color-ink: #2c4468; /* body copy */
+  --color-ink-soft: #5c7395;
+  --color-navy: #1f3455; /* headings */
+
+  /* tiny accents only */
+  --color-sage: #cdd8c3;
+  --color-blush: #f3dcd9;
+
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--color-butter-soft);
+    color: var(--color-navy);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Eyebrow / small-caps label used above section headings */
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    font-weight: 500;
+  }
+
+  /* One button for the entire site: butter yellow, fully pill, same height */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 3rem;
+    padding-inline: 1.9rem;
+    border-radius: 9999px;
+    background-color: var(--color-butter);
+    color: var(--color-navy);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid var(--color-butter-deep);
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .btn:hover {
+    background-color: var(--color-butter-deep);
+    box-shadow: 0 6px 18px -10px rgba(44, 68, 104, 0.55);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* Quiet variant — identical shape and height, outlined instead of filled */
+  .btn-quiet {
+    background-color: transparent;
+    border-color: var(--color-sky);
+    color: var(--color-navy);
+  }
+
+  .btn-quiet:hover {
+    background-color: var(--color-sky-pale);
+    box-shadow: none;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: 0.45rem;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-sky-soft);
+    background-color: var(--color-cream);
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+
+  .field::placeholder {
+    color: #9fb2ca;
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--color-sky);
+    box-shadow: 0 0 0 3px var(--color-sky-pale);
+  }
+
+  .card {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-sky-soft);
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 0 rgba(31, 52, 85, 0.03);
+  }
+
+  /* Wide, thick stripes — used sparingly, one or two spots per page */
+  .stripes-butter {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-butter-soft) 0px,
+      var(--color-butter-soft) 34px,
+      transparent 34px,
+      transparent 68px
+    );
+  }
+
+  .stripes-sky {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-sky-soft) 0px,
+      var(--color-sky-soft) 34px,
+      transparent 34px,
+      transparent 68px
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
